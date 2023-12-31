@@ -1,0 +1,49 @@
+<div class="container-sm">
+  <div class="m-3">
+    <button class="btn btn-primary m-1" (click)="fetchData()">
+      Fetch Data
+    </button>
+    <button class="btn btn-danger m-1" (click)="display()">Clear</button>
+    <button class="btn btn-primary m-1" (click)="new1()">New</button>
+  </div>
+  <div class="m-s" *ngIf="!submit && new">
+    <button class="btn btn-danger m-1" (click)="clear()">Clear Address</button>
+  </div>
+  <table
+    class="table table-bordered caption-top mt-4"
+    *ngIf="submit && apiData.length > 0"
+  >
+    <tr>
+      <th>userId</th>
+      <th>Id</th>
+      <th>Title</th>
+      <th>Body</th>
+    </tr>
+    <tr *ngFor="let submission of apiData">
+      <td>{{ submission.userId }}</td>
+      <td>{{ submission.id }}</td>
+      <td>{{ submission.title }}</td>
+      <td>{{ submission.body }}</td>
+    </tr>
+  </table>
+  <table
+    class="table table-bordered caption-top mt-4"
+    *ngIf="new && apiUser.length > 0"
+  >
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th *ngIf="!Clear">Address</th>
+    </tr>
+    <tr *ngFor="let submission of apiUser">
+      <td>{{ submission.id }}</td>
+      <td>{{ submission.name }}</td>
+      <td>{{ submission.email }}</td>
+      <td *ngIf="!Clear">
+        {{ submission.address.street }} {{ submission.address.suite }}
+        {{ submission.address.zipcode }}
+      </td>
+    </tr>
+  </table>
+</div>
